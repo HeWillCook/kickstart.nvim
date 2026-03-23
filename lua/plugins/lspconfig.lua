@@ -20,9 +20,6 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
-        -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-        -- to define small helper and utility functions so you don't have to repeat yourself.
-        --
         local map = function(keys, func, desc, mode)
           mode = mode or 'n'
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
@@ -89,16 +86,8 @@ return {
       pyright = {},
       rust_analyzer = {},
       html = {},
-      --
-      -- Some languages (like typescript) have entire language plugins that can be useful:
-      --    https://github.com/pmizio/typescript-tools.nvim
-      --
-      -- But for many setups, the LSP (`ts_ls`) will work just fine
       ts_ls = {},
-
-      stylua = {}, -- Used to format Lua code
-
-      -- Special Lua Config, as recommended by neovim help docs
+      stylua = {},
       lua_ls = {
         on_init = function(client)
           if client.workspace_folders then
@@ -108,13 +97,11 @@ return {
 
           client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
             runtime = {
-              version = 'LuaJIT',
+            version = 'LuaJIT',
               path = { 'lua/?.lua', 'lua/?/init.lua' },
             },
             workspace = {
               checkThirdParty = false,
-              -- NOTE: this is a lot slower and will cause issues when working on your own configuration.
-              --  See https://github.com/neovim/nvim-lspconfig/issues/3189
               library = vim.tbl_extend('force', vim.api.nvim_get_runtime_file('', true), {
                 '${3rd}/luv/library',
                 '${3rd}/busted/library',
@@ -128,16 +115,9 @@ return {
       },
     }
 
-    -- Ensure the servers and tools above are installed
-    --
-    -- To check the current status of installed tools and/or manually install
-    -- other tools, you can run
-    --    :Mason
-    --
-    -- You can press `g?` for help in this menu.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      -- You can add other tools here that you want Mason to install
+      -- you can add other tools here that you want mason to install
     })
 
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
