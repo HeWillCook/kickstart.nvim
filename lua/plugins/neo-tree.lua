@@ -13,15 +13,16 @@ return {
   },
   lazy = false,
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<leader>j', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   ---@module 'neo-tree'
   ---@type neotree.Config
   opts = {
     filesystem = {
+      hijack_netrw_behavior = 'disabled',
       window = {
         mappings = {
-          ['\\'] = 'close_window',
+          ['<leader>j'] = 'close_window',
         },
       },
     },
