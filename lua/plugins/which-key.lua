@@ -18,4 +18,4 @@ return { -- Useful plugin to show you pending keybinds.
       { 'gr', group = 'LSP Actions', mode = { 'n' } },
     },
   },
-}
+} --]]
