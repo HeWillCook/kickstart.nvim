@@ -18,6 +18,13 @@ vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 
 -- Enable break indent
 vim.o.breakindent = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = false
+vim.opt.cindent = false
 
 -- Enable undo/redo changes even after closing and reopening a file
 vim.o.undofile = true
@@ -54,7 +61,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.o.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.o.cursorline = true
+vim.o.cursorline = false
 
 -- Make the cursoer never line
 vim.opt.guicursor = 'n-v-c-i:block'
@@ -68,3 +75,6 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 vim.g.have_nerd_font = true
+
+vim.lsp.completion = true
+vim.lsp.inline_completion = true
