@@ -36,6 +36,7 @@ return {
         -- WARN: This is not Goto Definition, this is Goto Declaration.
         --  For example, in C this would take you to the header.
         map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        map('gd', vim.lsp.buf.definition, 'Go to definition')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -97,7 +98,7 @@ return {
 
           client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
             runtime = {
-            version = 'LuaJIT',
+              version = 'LuaJIT',
               path = { 'lua/?.lua', 'lua/?/init.lua' },
             },
             workspace = {
